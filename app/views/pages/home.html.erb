@@ -1,5 +1,8 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<% if user_signed_in? && current_user.avatar.present? %>
+<%= image_tag(current_user.avatar.variant(resize_to_fill: [150, 150])) %>
+<% else %>
+<%= image_tag("default_avatar.jpg", {:style => "width:100px;"}) %>
+<% end %>
 <%if current_user%>
     <%=link_to "Start Chatting", rooms_path %>
     <%=button_to "Logout",  destroy_user_session_path%>

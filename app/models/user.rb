@@ -8,8 +8,14 @@ class User < ApplicationRecord
 
   has_many :messages, dependent: :destroy
   has_one_attached :avatar, dependent: :destroy
-  validates :avatar,  presence: true
+  validate :correct_avatar_type
   validates :name,  presence: true
+
+  def correct_avatar_type
+    if avatar.attached? && !avatar.content_type.in?(%w(image/jpeg image/png image/jpg))
+      errors.add(:avatar, 'must be a  jpg jpeg png')
+    end
+  end
 
   enum status: %i[offline away online]
 

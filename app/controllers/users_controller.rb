@@ -20,4 +20,6 @@ class UsersController < ApplicationController
     users = [user1, user2].sort
     "private_#{users[0].id}_#{users[1].id}"
   end
+
+
 end

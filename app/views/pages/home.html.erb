@@ -1,12 +1,49 @@
+<div class="p-0">
+  <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <%=image_tag("slider1.jpg",class:"slider" )%>
+        <div class="carousel-caption d-none d-md-block">
+          <%=link_to "Start Chatting", rooms_path, class:'btn btn-secondary'%>
+          <p>Easy way to stay connected with world .</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <%=image_tag("slider2.jpg",class:"slider" )%>
+        <div class="carousel-caption d-none d-md-block">
+          <%=link_to "Start Chatting", rooms_path, class:'btn btn-secondary'%>
+          <p>Easy way to stay connected with world.</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <%=image_tag("slider3.jpg",class:"slider" )%>
+        <div class="carousel-caption d-none d-md-block">
+        <%=link_to "Start Chatting", rooms_path, class:'btn btn-secondary'%>
+          <p>Easy way to stay connected with world.</p>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
+
+<div class="container mt-4 text-center "> 
 <% if user_signed_in? && current_user.avatar.present? %>
-<%= image_tag(current_user.avatar.variant(resize_to_fill: [150, 150])) %>
+<%= image_tag(current_user.avatar, class:"rounded mx-auto d-block edit_avatar") %>
 <% else %>
-<%= image_tag("default_avatar.jpg", {:style => "width:100px;"}) %>
+<%= image_tag("slider1.jpg",class:"default-avatar") %>
 <% end %>
-<%if current_user%>
-    <%=link_to "Start Chatting", rooms_path %>
-    <%=button_to "Logout",  destroy_user_session_path%>
-<%else %>
-    <%=link_to "Login", new_user_session_path%>
-    <%=link_to "sign up", new_user_registration_path%>
-<%end %>    
+ <%=link_to "Start Chatting", rooms_path, class:'btn btn-secondary mt-2 mb-4'%>
+</div>

@@ -1,29 +1,48 @@
-<div id="chatroom_container" class="row bg-dark text-light">
-   <div id="side_panel", class="col-md-4 col-sm-4"> 
-    <h5> <%= current_user.email%></h5>
-    <h4>users</h4>
-    <%= turbo_stream_from "users"%> 
-    <div id="users">
-        <%=render @users%>
-    </div>
-    <h4>Rooms</h4>
-    <%= render 'layouts/new_room_form'%>
-    <%= turbo_stream_from "rooms"%> 
-    <div id="rooms">
-        <%=render @rooms%>
-    </div> 
-   </div>
-   <div id="room_container" class="col-md-8 col-sm-8 bg-dark text-light"> 
-   <%if @single_room%>
-    <div id="single_room">
-        <h4 class="text-center"><%= @user&.email || @single_room.name%></h4>
-        <%= turbo_stream_from @single_room%>
-        <div id="messages" data-controller="scroll">
-        <%= render @messages%>
+<%= turbo_frame_tag "appearance_channel" %>
+  <div id="appearance_channel"></div>
+
+  <div id="chatroom_container" class="row bg-dark text-light">
+    <div id="side_panel", class="col-md-4 col-sm-4">
+      <li class="list-group-item d-flex align-items-center  user_list_item">
+        <div class="icon-container">
+            <% if current_user.avatar.attached?%>
+              <%= link_to image_tag(current_user.chat_pfp, class: 'chat_pfp'), current_user %>
+              <%= turbo_stream_from "user_status" %>
+            <%else%>
+              <%= link_to image_tag("default_avatar.jpg", class: 'chat_pfp'),current_user %>
+              <%= turbo_stream_from "user_status" %>
+            <%end%>
+          <div>
+              <%= render "users/status", user: current_user  %>
+          </div>
         </div>
-        <%= render 'layouts/new_message_form'%>
+        <div class='mr-auto username text-light fw-bolder'>
+          <%= current_user.email%>
+        </div>
+      </li>
+      <h4>users</h4>
+      <%= turbo_stream_from "users"%>
+      <div id="users">
+            <%=render @users%>
+      </div>
+      <h4>Rooms</h4>
+      <%= render 'layouts/new_room_form'%>
+      <%= turbo_stream_from "rooms"%>
+      <div id="rooms" class="mt-2">
+          <%=render @rooms%>
+      </div>
     </div>
-   <%end%>
-   </div>   
-</div>
+    <div id="room_container" class="col-md-8 col-sm-8 bg-dark text-light">
+      <%if @single_room%>
+        <div id="single_room">
+            <h4 class="text-center text-light list-group-item  align-items-center  user_list_item"><%= @user&.name  || @single_room.name%></h4>
+            <%= turbo_stream_from @single_room%>
+            <div id="messages" data-controller="scroll">
+            <%= render @messages%>
+            </div>
+            <%= render 'layouts/new_message_form'%>
+        </div>
+      <%end%>
+    </div>
+  </div>
 </div>

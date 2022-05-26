@@ -1,5 +1,6 @@
 <div>
-    <li class="list-group-item d-flex  user_list_item ">
-        <%= link_to room.name, room%>
+    <li class="list-group-item d-flex user_list_item ">
+         <%= image_tag("default_avatar.jpg", class: 'chat_pfp') %>
+        <%= link_to room.name, room, class:"text-decoration-none btn btn-primary" %>
     </li>
 </div>

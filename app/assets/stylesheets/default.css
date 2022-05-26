@@ -1,0 +1,30 @@
+.slider {
+    height: 75vmin;
+    width: 100%;
+}
+
+.default-avatar {
+    height: 50vmin;
+    width: 100%;
+    border: 2vmin solid black;
+}
+
+.edit_avatar {
+    height: 30vmin;
+}
+
+.bg-success {
+    background-color: blue;
+}
+
+.bg-warning {
+    background-color: orange;
+}
+
+.bg-danger {
+    background-color: red;
+}
+
+.bg-dark {
+    background-color: grey;
+}

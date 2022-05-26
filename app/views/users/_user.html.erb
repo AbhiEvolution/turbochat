@@ -3,18 +3,18 @@
 <% else %>
   <% isActive = '' %>
 <% end %>
-<li class="list-group-item d-flex align-items-center  user_list_item <%= isActive %>">
+<li class="list-group-item d-flex align-items-center user_list_item <%= isActive %>">
 <div class="icon-container">
 <% if user.avatar.attached?%>
 <%= link_to image_tag(user.chat_pfp, class: 'chat_pfp'), user %>
   <%= turbo_stream_from "user_status" %>
     <%else%>
-  <%= link_to image_tag("default_avatar.jpg", class: 'chat_pfp'), user %>
+  <%= link_to image_tag("default_avatar.jpg", class: 'chat_pfp '), user %>
   <%= turbo_stream_from "user_status" %>
 <%end%>
  <div>
     <%= render "users/status", user: user  %>
   </div>
 </div>
-  <%= link_to user.email, user, class:'mr-auto username', data: {turbo: "false"} %>
+  <%= link_to user.email, user, class:'mr-auto username text-decoration-none btn btn-secondary', data: {turbo: "false"} %>
 </li>

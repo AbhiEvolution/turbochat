@@ -11,13 +11,13 @@
         <div class="icon-container">
             <% if current_user.avatar.attached?%>
               <%= link_to image_tag(current_user.chat_pfp, class: 'chat_pfp'), current_user %>
-              <%= turbo_stream_from "user_status" %>
+              <%#= turbo_stream_from "user_status" %>
             <%else%>
               <%= link_to image_tag("default_avatar.jpg", class: 'chat_pfp'),current_user %>
-              <%= turbo_stream_from "user_status" %>
+              <%#= turbo_stream_from "user_status" %>
             <%end%>
           <div>
-              <%= render "users/status", user: current_user  %>
+              <%#= render "users/status", user: current_user  %>
           </div>
         </div>
         <div class='mr-auto username text-light fw-bolder'>

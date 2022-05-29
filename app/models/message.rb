@@ -7,7 +7,6 @@ class Message < ApplicationRecord
   validate :validate_attachment_filetypes
 
   after_create_commit do
-    update_parent_room
     broadcast_append_to room
   end
 
@@ -38,14 +37,14 @@ class Message < ApplicationRecord
 
     attachments.each do |attachment|
       unless attachment.content_type.in?(%w[image/jpeg image/png image/gif video/mp4 video/mpeg audio/vnd.wave
-                                            audio/mp3])
+                                          audio/mpeg])
         errors.add(:attachments, 'must be a JPEG, PNG, GIF, MP4, MP3, or WAV file')
       end
     end
   end
 
-  def update_parent_room
-    room.update(last_message_at: Time.now)
-  end
+  # def update_parent_room
+  #   room.update(last_message_at: Time.now)
+  # end
 
 end
